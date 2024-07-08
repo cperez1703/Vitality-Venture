@@ -1,40 +1,8 @@
-import { UserButton } from "@clerk/nextjs";
+import Navbar from "@/components/navigation/Navbar";
 export default function Home() {
   return (
     <>
-      <div
-        className="w-full h-[113px] relative"
-        style={{ filter: "drop-shadow(0px 4px 4px rgba(0,0,0,0.25))" }}
-      >
-        <div className="w-full h-[104px] absolute left-[-1px] top-[-1px] bg-[#d9d9d9] border border-black" />
-          <button className="w-[293px] h-[54px] absolute left-[19px] top-[35px] text-[40px] text-left text-black">
-            Vitality Venture
-          </button>
-          <button className="w-[88px] h-[54px] absolute left-[743px] top-[59px] text-[32px] text-left text-black">
-            Home
-          </button>
-          <button className="w-[88px] h-[54px] absolute left-[851px] top-[59px] text-[32px] text-left text-black">
-            Shop
-          </button>
-          <button className="w-[147px] h-[54px] absolute left-[959px] top-[59px] text-[32px] text-left text-black">
-            Character
-          </button>
-          <button className="w-[147px] h-[54px] absolute left-[1126px] top-[59px] text-[32px] text-left text-black">
-            Calendar
-          </button>
-
-          <div
-            className="absolute left-[1302px] top-[11px]"
-          >
-            <UserButton
-              appearance={{
-                elements: {
-                    avatarBox: "h-[80px] w-[80px]"
-                }
-              }}
-            />
-          </div>
-      </div>
+      <Navbar/>
       <div className="w-[1324px] h-[823px] relative">
         <div className="w-[1321px] h-[823px] absolute left-0.5 top-[-1px] bg-[#d9d9d9] border border-black" />
         <div className="w-[1321px] h-[73px] absolute left-0.5 top-[-1px] bg-[#d9d9d9] border border-black" />
