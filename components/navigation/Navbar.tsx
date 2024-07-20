@@ -1,7 +1,14 @@
+"use client";
+
+import { useState } from 'react';
 import Link from 'next/link'
 import { UserButton } from "@clerk/nextjs";
 
-const Navbar = () => {
+interface NavbarProps{
+    points: number;
+}
+
+const Navbar = ({points}:NavbarProps) => {
     return ( 
         <nav className="bg-white border-gray-200 dark:bg-gray-900">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -42,7 +49,9 @@ const Navbar = () => {
                         >
                             Calendar
                         </Link>
-
+                    </li>
+                    <li>
+                        Points: {points}
                     </li>
                     <li>
                         <UserButton/>

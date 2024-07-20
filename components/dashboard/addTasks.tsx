@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -13,11 +14,28 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-const AddTasks = () => {
+interface AddTasksProps {
+  addTask: (text: string, time: string) => void;
+}
+
+const AddTasks: React.FC<AddTasksProps> = ({ addTask }) => {
+    const [taskText, setTaskText] = useState("");
+    const [taskTime, setTaskTime] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleAddTask = () => {
+        if (taskText.trim() && taskTime.trim()) {
+            addTask(taskText, taskTime);
+            setTaskText("");
+            setTaskTime("");
+            setIsOpen(false);
+        }
+    };
+
     return ( 
-        <Dialog>
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
-                <Button size="lg" variant="outline">
+                <Button size="lg" variant="outline" onClick={() => setIsOpen(true)}>
                     Add Task
                 </Button>
             </DialogTrigger>
@@ -35,23 +53,25 @@ const AddTasks = () => {
                 </Label>
                 <Input
                     id="name"
-                    defaultValue="Drink Water"
+                    value={taskText}
+                    onChange={(e) => setTaskText(e.target.value)}
                     className="col-span-3"
                 />
                 </div>
                 <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="Time" className="text-right">
+                <Label htmlFor="time" className="text-right">
                     Time
                 </Label>
                 <Input
                     id="time"
-                    defaultValue="6:00am"
+                    value={taskTime}
+                    onChange={(e) => setTaskTime(e.target.value)}
                     className="col-span-3"
                 />
                 </div>
             </div>
             <DialogFooter>
-                <Button className="hover:bg-green-600" type="submit">Create Task</Button>
+                <Button className="hover:bg-green-600" onClick={handleAddTask}>Create Task</Button>
             </DialogFooter>
             </DialogContent>
         </Dialog>
