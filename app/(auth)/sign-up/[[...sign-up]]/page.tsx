@@ -18,7 +18,7 @@ export default function Page() {
             </div>
         </div>
         <div className="h-full bg-green-500 hidden lg:flex items-center justify-center">
-            <Image src="/gator.png" height={500} width={500} alt="Logo"/>
+            <Image src="/gator-removebg-preview.png" height={500} width={500} alt="Logo"/>
         </div>
     </div>
 );
