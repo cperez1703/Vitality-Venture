@@ -1,4 +1,7 @@
+import useStore from "@/components/dashboard/useStore";
+
 export default function Home() {
+
   return (
     <>
       <div className="w-[1273px] h-[174px] relative">

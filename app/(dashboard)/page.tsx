@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import AddTasks from "@/components/dashboard/addTasks";
 import HomeHeader from "@/components/dashboard/homeHeader";
 import SortTasks from "@/components/dashboard/sortTasks";
@@ -9,18 +9,10 @@ import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import EditTasks from "@/components/dashboard/editTasks";
-
-interface Task {
-  id: number;
-  text: string;
-  completed: boolean;
-  time: string;
-  timeCreated: string;
-}
+import useStore from "@/components/dashboard/useStore";
 
 export default function Home() {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [points, setPoints] = useState(0);
+  const { tasks, points, addTask, saveTask, completeTask, deleteTask, sortTasks } = useStore();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const handleSliderChange = (value: number[]) => {
@@ -29,58 +21,6 @@ export default function Home() {
       const maxScrollLeft = container.scrollWidth - container.clientWidth;
       container.scrollLeft = (maxScrollLeft * value[0]) / 100;
     }
-  };
-
-  const addTask = (text: string, time: string) => {
-    const newTask = {
-      id: tasks.length + 1,
-      text,
-      completed: false,
-      time,
-      timeCreated: new Date().toLocaleTimeString(),
-    };
-    setTasks([...tasks, newTask]);
-  };
-
-  const saveTask = (updatedTask: Task) => {
-    setTasks(tasks.map(task => (task.id === updatedTask.id ? updatedTask : task)));
-  };
-
-  const completeTask = (taskId: number) => {
-    const updatedTasks = tasks.map(task =>
-      task.id === taskId ? { ...task, completed: true } : task
-    );
-    setTasks(updatedTasks);
-
-    setPoints(prevPoints => prevPoints + 10);
-  };
-
-  const deleteTask = (taskId: number) => {
-    const updatedTasks = tasks.filter(task => task.id !== taskId);
-    setTasks(updatedTasks);
-  };
-
-  const sortTasks = (criteria: string) => {
-    let sortedTasks = [...tasks];
-
-    switch (criteria) {
-      case "completion":
-        sortedTasks.sort((a, b) => Number(a.completed) - Number(b.completed));
-        break;
-      case "time":
-        sortedTasks.sort((a, b) => (a.time > b.time ? 1 : -1));
-        break;
-      case "create":
-        sortedTasks.sort((a, b) => (a.timeCreated > b.timeCreated ? 1 : -1));
-        break;
-      case "alphabet":
-        sortedTasks.sort((a, b) => a.text.localeCompare(b.text));
-        break;
-      default:
-        break;
-    }
-
-    setTasks(sortedTasks);
   };
 
   return (

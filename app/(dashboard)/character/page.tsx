@@ -1,8 +1,13 @@
+"use client";
+
 import Navbar from "@/components/navigation/Navbar";
+import useStore from "@/components/dashboard/useStore";
 export default function Home() {
+  const { points } = useStore();
+
   return (
     <>
-      <Navbar/>
+      <Navbar points={points} />
       <svg
         width={1228}
         height={730}
