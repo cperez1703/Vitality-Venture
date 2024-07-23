@@ -1,50 +1,51 @@
 "use client";
 
+import { useState } from "react";
 import Navbar from "@/components/navigation/Navbar";
 import useStore from "@/components/dashboard/useStore";
+import Image from "next/image";
+import Hats from "@/components/character/hats";
+import Eyes from "@/components/character/eyes";
+import Shirts from "@/components/character/shirts";
+import Pants from "@/components/character/pants";
+import Shoes from "@/components/character/shoes";
+import Accessories from "@/components/character/accessories";
+import Gator from "@/components/character/gator";
+import useCharacterStore from "@/components/character/useCharacterStore";
+
 export default function Home() {
   const { points } = useStore();
+  const { hat, setHat, eye, setEye, shirt, setShirt, pants, setPants, shoes, setShoes, accessories, setAccessories  } = useCharacterStore();
 
   return (
     <>
-      <Navbar points={points} />
-      <svg
-        width={1228}
-        height={730}
-        viewBox="0 0 1228 730"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-[1228px] h-[729px] relative"
-        preserveAspectRatio="none"
-      >
-        <circle cx={78} cy={75} r="74.5" fill="#DBDBDB" stroke="black" />
-        <line x1="27.7409" y1="20.2843" x2="128.991" y2="129.034" stroke="black" />
-        <line x1="123.381" y1="17.1988" x2="27.756" y2="129.699" stroke="black" />
-        <circle cx={75} cy={345} r="74.5" fill="#DBDBDB" stroke="black" />
-        <line x1="24.7409" y1="290.284" x2="125.991" y2="399.034" stroke="black" />
-        <line x1="120.381" y1="287.199" x2="24.756" y2="399.699" stroke="black" />
-        <circle cx={78} cy={75} r="74.5" fill="#DBDBDB" stroke="black" />
-        <line x1="27.7409" y1="20.2843" x2="128.991" y2="129.034" stroke="black" />
-        <line x1="123.381" y1="17.1988" x2="27.756" y2="129.699" stroke="black" />
-        <circle cx={78} cy={632} r="74.5" fill="#DBDBDB" stroke="black" />
-        <line x1="27.7409" y1="577.284" x2="128.991" y2="686.034" stroke="black" />
-        <line x1="123.381" y1="574.199" x2="27.756" y2="686.699" stroke="black" />
-        <circle cx={1153} cy={75} r="74.5" fill="#DBDBDB" stroke="black" />
-        <line x1="1102.74" y1="20.2843" x2="1203.99" y2="129.034" stroke="black" />
-        <line x1="1198.38" y1="17.1988" x2="1102.76" y2="129.699" stroke="black" />
-        <circle cx={1150} cy={345} r="74.5" fill="#DBDBDB" stroke="black" />
-        <line x1="1099.74" y1="290.284" x2="1200.99" y2="399.034" stroke="black" />
-        <line x1="1195.38" y1="287.199" x2="1099.76" y2="399.699" stroke="black" />
-        <circle cx={1153} cy={75} r="74.5" fill="#DBDBDB" stroke="black" />
-        <line x1="1102.74" y1="20.2843" x2="1203.99" y2="129.034" stroke="black" />
-        <line x1="1198.38" y1="17.1988" x2="1102.76" y2="129.699" stroke="black" />
-        <circle cx={1153} cy={632} r="74.5" fill="#DBDBDB" stroke="black" />
-        <line x1="1102.74" y1="577.284" x2="1203.99" y2="686.034" stroke="black" />
-        <line x1="1198.38" y1="574.199" x2="1102.76" y2="686.699" stroke="black" />
-        <rect x="249.5" y="75.5" width={653} height={653} fill="#D9D9D9" stroke="black" />
-        <line x1="249.354" y1="74.6464" x2="903.354" y2="728.646" stroke="black" />
-        <line x1="903.354" y1="75.3536" x2="249.354" y2="729.354" stroke="black" />
-      </svg>
+      <div className="relative flex flex-col h-screen bg-cover bg-center" style={{ backgroundImage: "url('/dressing_room.png')" }}>
+        <Navbar points={points} />
+        <div className="flex absolute top-0 left-0 w-full h-full">
+          <div className="flex-1 flex flex-col items-center justify-center p-2">
+            <Hats setHat={setHat}/>
+            <Eyes setEye={setEye}/>
+            <Shirts setShirt={setShirt}/>
+          </div>
+          <div className="flex-1 flex flex-col items-center justify-center p-2">
+            <div className="relative flex items-center justify-center">
+              <Gator
+                hat={hat}
+                eyes={eye}
+                shirt={shirt}
+                pants={pants}
+                shoes={shoes}
+                accessories={accessories}
+              />
+            </div>
+          </div>
+          <div className="flex-1 flex flex-col items-center justify-center p-2">
+            <Pants setPants={setPants}/>
+            <Shoes setShoes={setShoes}/>
+            <Accessories setAccessories={setAccessories}/>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
