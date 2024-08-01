@@ -19,9 +19,9 @@ export default function Home() {
 
   return (
     <>
-      <div className="relative flex flex-col h-screen bg-cover bg-center" style={{ backgroundImage: "url('/dressing_room.png')" }}>
+      <div className="relative flex flex-col h-screen bg-cover bg-center">
         <Navbar points={points} />
-        <div className="flex absolute top-0 left-0 w-full h-full">
+        <div className="flex top-0 left-0 w-full h-full">
           <div className="flex-1 flex flex-col items-center justify-center p-2">
             <Hats setHat={setHat}/>
             <Eyes setEye={setEye}/>
