@@ -41,7 +41,7 @@ const Gator = ({
           height={250}
           width={250}
           alt="Eyes"
-          className="absolute -top-4 left-1/2 transform -translate-x-1/2 -translate-y-1/4 z-10"
+          className="absolute -top-4 left-1/2 transform -translate-x-24 translate-y-7 z-10"
         />
       )}
       {shirt && (
