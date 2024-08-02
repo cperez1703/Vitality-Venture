@@ -10,18 +10,23 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import useCharacterStore from "../character/useCharacterStore";
+import useStore from "../dashboard/useStore";
 
-// Define the type for props
-interface HatsProps {
-  onPurchase: () => void;
-}
-
-const Hats: React.FC<HatsProps> = ({ onPurchase }) => {
+const Hats = () => {
   const [open, setOpen] = useState(false);
+  const { points, subtractPoints } = useStore();
+  const { setHat, addOwnedHat } = useCharacterStore();
 
-  const handlePurchase = () => {
-    onPurchase();
-    setOpen(false);
+  const hatCost = 10;
+
+  const handlePurchase = (hat: string) => {
+    if (points >= hatCost) {
+      setHat(hat);
+      addOwnedHat(hat);
+      setOpen(false);
+      subtractPoints(hatCost);
+    }
   };
 
   return (
@@ -36,7 +41,7 @@ const Hats: React.FC<HatsProps> = ({ onPurchase }) => {
             className="z-0"
             onClick={() => setOpen(true)}
           />
-          <p className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-xl font-semibold text-gray-800 text-center z-10">
+          <p className="absolute top-1/3 left-1/2 transform -translate-x-1/2 translate-y-1 text-xl font-semibold text-gray-800 text-center z-10">
             Hats
           </p>
         </div>
@@ -44,27 +49,59 @@ const Hats: React.FC<HatsProps> = ({ onPurchase }) => {
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="items-center justify-center flex">
-            Hats
+            Hats (10 Points)
           </DialogTitle>
           <DialogDescription className="items-center justify-center flex">
             Buy your hat NOW
           </DialogDescription>
         </DialogHeader>
-        <button
-          onClick={handlePurchase}
-          className="relative flex items-center justify-center h-full mb-4"
-        >
-          <Image
-            src="/cowboy_hat.png"
-            height={300}
-            width={300}
-            alt="Cowboy Hat"
-            className="z-0"
-          />
-          <p className="absolute top-2 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-xl font-semibold text-gray-800 text-center z-10">
-            Cowboy Hat (20 Points)
-          </p>
-        </button>
+        <div className="flex justify-around space-x-4">
+          <button
+            className="relative flex items-center justify-center h-full"
+            onClick={() => handlePurchase("/cowboy_hat.png")}
+          >
+            <Image
+              src="/cowboy_hat.png"
+              height={300}
+              width={300}
+              alt="Cowboy Hat"
+              className="z-0"
+            />
+            <p className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-sm font-semibold text-gray-800 text-center z-10">
+              Cowboy
+            </p>
+          </button>
+          <button
+            className="relative flex items-center justify-center h-full"
+            onClick={() => handlePurchase("/tophat.png")}
+          >
+            <Image
+              src="/tophat.png"
+              height={300}
+              width={300}
+              alt="Top Hat"
+              className="z-0"
+            />
+            <p className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-sm font-semibold text-gray-800 text-center z-10">
+              Tophat
+            </p>
+          </button>
+          <button
+            className="relative flex items-center justify-center h-full"
+            onClick={() => handlePurchase("/chefhat.png")}
+          >
+            <Image
+              src="/chefhat.png"
+              height={300}
+              width={300}
+              alt="Chef Hat"
+              className="z-0"
+            />
+            <p className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-sm font-semibold text-gray-800 text-center z-10">
+              Chef
+            </p>
+          </button>
+        </div>
       </DialogContent>
     </Dialog>
   );

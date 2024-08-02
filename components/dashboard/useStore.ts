@@ -68,6 +68,7 @@ const useStore = create<Store>((set) => ({
 
     return { tasks: sortedTasks };
   }),
+  subtractPoints: (amount: number) => set((state) => ({ points: state.points - amount })),
 }));
 
 export default useStore;

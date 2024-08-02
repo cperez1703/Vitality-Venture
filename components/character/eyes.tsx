@@ -18,6 +18,9 @@ interface EyesProps {
 
 const Eyes = ({ setEye }: EyesProps) => {
   const [open, setOpen] = useState(false);
+  const { ownedEyes } = useCharacterStore(state => ({
+    ownedEyes: state.ownedEyes,
+  }));
 
   const handleButtonClick = (eye: string) => {
     setEye(eye);
@@ -50,51 +53,57 @@ const Eyes = ({ setEye }: EyesProps) => {
           </DialogDescription>
         </DialogHeader>
         <div className="flex justify-around space-x-4">
-          <button
-            className="relative flex items-center justify-center h-full"
-            onClick={() => handleButtonClick("/glasses.png")}
-          >
-            <Image
-              src="/glasses.png"
-              height={300}
-              width={300}
-              alt="Glasses"
-              className="z-0"
-            />
-            <p className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-sm font-semibold text-gray-800 text-center z-10">
-              Glasses
-            </p>
-          </button>
-          <button
-            className="relative flex items-center justify-center h-full"
-            onClick={() => handleButtonClick("/goggles.png")}
-          >
-            <Image
-              src="/goggles.png"
-              height={300}
-              width={300}
-              alt="Goggles"
-              className="z-0"
-            />
-            <p className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-sm font-semibold text-gray-800 text-center z-10">
-              Goggles
-            </p>
-          </button>
-          <button
-            className="relative flex items-center justify-center h-full"
-            onClick={() => handleButtonClick("/sunglasses.png")}
-          >
-            <Image
-              src="/sunglasses.png"
-              height={300}
-              width={300}
-              alt="Sunglasses"
-              className="z-0"
-            />
-            <p className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-sm font-semibold text-gray-800 text-center z-10">
-              Sunglasses
-            </p>
-          </button>
+          {ownedEyes.includes("/glasses.png") && (
+            <button
+              className="relative flex items-center justify-center h-full"
+              onClick={() => handleButtonClick("/glasses.png")}
+            >
+              <Image
+                src="/glasses.png"
+                height={300}
+                width={300}
+                alt="Glasses"
+                className="z-0"
+              />
+              <p className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-sm font-semibold text-gray-800 text-center z-10">
+                Glasses
+              </p>
+            </button>
+          )}
+          {ownedEyes.includes("/goggles.png") && (
+            <button
+              className="relative flex items-center justify-center h-full"
+              onClick={() => handleButtonClick("/goggles.png")}
+            >
+              <Image
+                src="/goggles.png"
+                height={300}
+                width={300}
+                alt="Goggles"
+                className="z-0"
+              />
+              <p className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-sm font-semibold text-gray-800 text-center z-10">
+                Goggles
+              </p>
+            </button>
+          )}
+          {ownedEyes.includes("/sunglasses.png") && (
+            <button
+              className="relative flex items-center justify-center h-full"
+              onClick={() => handleButtonClick("/sunglasses.png")}
+            >
+              <Image
+                src="/sunglasses.png"
+                height={300}
+                width={300}
+                alt="Sunglasses"
+                className="z-0"
+              />
+              <p className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-sm font-semibold text-gray-800 text-center z-10">
+                Sunglasses
+              </p>
+            </button>
+          )}
         </div>
       </DialogContent>
     </Dialog>

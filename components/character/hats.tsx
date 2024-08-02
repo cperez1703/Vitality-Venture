@@ -18,6 +18,9 @@ interface HatProps {
 
 const Hats = ({ setHat }: HatProps) => {
   const [open, setOpen] = useState(false);
+  const { ownedHats } = useCharacterStore(state => ({
+    ownedHats: state.ownedHats,
+  }));
 
   const handleButtonClick = (hat: string) => {
     setHat(hat);
@@ -50,51 +53,57 @@ const Hats = ({ setHat }: HatProps) => {
           </DialogDescription>
         </DialogHeader>
         <div className="flex justify-around space-x-4">
-          <button
-            className="relative flex items-center justify-center h-full"
-            onClick={() => handleButtonClick("/cowboy_hat.png")}
-          >
-            <Image
-              src="/cowboy_hat.png"
-              height={300}
-              width={300}
-              alt="Cowboy Hat"
-              className="z-0"
-            />
-            <p className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-sm font-semibold text-gray-800 text-center z-10">
-              Cowboy
-            </p>
-          </button>
-          <button
-            className="relative flex items-center justify-center h-full"
-            onClick={() => handleButtonClick("/tophat.png")}
-          >
-            <Image
-              src="/tophat.png"
-              height={300}
-              width={300}
-              alt="Top Hat"
-              className="z-0"
-            />
-            <p className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-sm font-semibold text-gray-800 text-center z-10">
-              Tophat
-            </p>
-          </button>
-          <button
-            className="relative flex items-center justify-center h-full"
-            onClick={() => handleButtonClick("/chefhat.png")}
-          >
-            <Image
-              src="/chefhat.png"
-              height={300}
-              width={300}
-              alt="Chef Hat"
-              className="z-0"
-            />
-            <p className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-sm font-semibold text-gray-800 text-center z-10">
-              Chef
-            </p>
-          </button>
+          {ownedHats.includes("/cowboy_hat.png") && (
+            <button
+              className="relative flex items-center justify-center h-full"
+              onClick={() => handleButtonClick("/cowboy_hat.png")}
+            >
+              <Image
+                src="/cowboy_hat.png"
+                height={300}
+                width={300}
+                alt="Cowboy Hat"
+                className="z-0"
+              />
+              <p className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-sm font-semibold text-gray-800 text-center z-10">
+                Cowboy
+              </p>
+            </button>
+          )}
+          {ownedHats.includes("/tophat.png") && (
+            <button
+              className="relative flex items-center justify-center h-full"
+              onClick={() => handleButtonClick("/tophat.png")}
+            >
+              <Image
+                src="/tophat.png"
+                height={300}
+                width={300}
+                alt="Top Hat"
+                className="z-0"
+              />
+              <p className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-sm font-semibold text-gray-800 text-center z-10">
+                Tophat
+              </p>
+            </button>
+          )}
+          {ownedHats.includes("/chefhat.png") && (
+            <button
+              className="relative flex items-center justify-center h-full"
+              onClick={() => handleButtonClick("/chefhat.png")}
+            >
+              <Image
+                src="/chefhat.png"
+                height={300}
+                width={300}
+                alt="Chef Hat"
+                className="z-0"
+              />
+              <p className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-sm font-semibold text-gray-800 text-center z-10">
+                Chef
+              </p>
+            </button>
+          )}
         </div>
       </DialogContent>
     </Dialog>
