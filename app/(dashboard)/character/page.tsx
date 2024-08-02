@@ -25,7 +25,6 @@ export default function Home() {
           <div className="flex-1 flex flex-col items-center justify-center p-2">
             <Hats setHat={setHat}/>
             <Eyes setEye={setEye}/>
-            <Shirts setShirt={setShirt}/>
           </div>
           <div className="flex-1 flex flex-col items-center justify-center p-2">
             <div className="relative flex items-center justify-center">
@@ -40,7 +39,6 @@ export default function Home() {
             </div>
           </div>
           <div className="flex-1 flex flex-col items-center justify-center p-2">
-            <Pants setPants={setPants}/>
             <Shoes setShoes={setShoes}/>
             <Accessories setAccessories={setAccessories}/>
           </div>

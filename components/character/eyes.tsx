@@ -35,7 +35,7 @@ const Eyes = ({ setEye }: EyesProps) => {
             alt="Shop Logo"
             className="z-0"
           />
-          <p className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-xl font-semibold text-gray-800 text-center z-10">
+          <p className="absolute top-1/4 left-1/2 transform -translate-x-1/2 translate-y-6 text-xl font-semibold text-gray-800 text-center z-10">
             Eyewear
           </p>
         </button>

@@ -69,25 +69,25 @@ const Gator = ({
           height={170}
           width={170}
           alt="Shoes"
-          className="absolute -top-4 left-1/2 transform translate-x-4 translate-y-64 z-10"
+          className="absolute -top-4 left-1/2 transform translate-x-4 translate-y-80 z-10"
         />
         <Image
           src={shoes}
           height={170}
           width={170}
           alt="Shoes"
-          className="absolute -top-4 left-1/2 transform -translate-x-24 translate-y-64 z-10"
+          className="absolute -top-4 left-1/2 transform -translate-x-24 translate-y-80 z-10"
         />
         </>
       )}
       {accessories && (
         <Image
-          src={accessories}
-          height={60}
-          width={60}
-          alt="Accessories"
-          className="absolute -top-4 left-1/2 transform -translate-x-10 translate-y-56 z-10"
-        />
+        src={accessories}
+        height={60}
+        width={60}
+        alt="Accessories"
+        className="absolute -top-4 left-1/2 transform -translate-x-10 translate-y-64 z-10"
+      />
       )}
     </div>
   );
